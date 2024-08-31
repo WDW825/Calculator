@@ -1,123 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Калькулятор</title>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        color: #fff;
-        background-color: #222;
-        text-align: center;
-    }
-    .calculator {
-        display: flex;
-        width: 400px;
-        margin: 100px auto;
-        padding: 20px;
-        background-color: #222;
-    }
-    input[type="button"] {
-        width: 50px;
-        height: 50px;
-        margin: 5px;
-        background-color: #555;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1.5em;
-    }
-    input[type="text"] {
-        width: 100%;
-        height: 50px;
-        margin-bottom: 10px;
-        font-size: 1.5em;
-        text-align: right;
-        background-color: #222;
-        color: #fff;
-        border: none;
-        border-bottom: 2px solid #fff;
-    }
-    .row {
-        display: flex;
-        justify-content: space-between;
-    }
-    .history {
-        width: 200px;
-        height: 300px;
-        margin-left: 20px;
-        background-color: #333;
-        padding: 10px;
-        text-align: left;
-    }
-    .history div {
-        margin-bottom: 5px;
-    }
-</style>
-</head>
-<body>
+{% extends 'calculation/main.html' %}
+{% load static %}
+
+{% block style%}
+    <link rel="stylesheet" href="{% static 'calculation/css/calculator.css'%}">
+{% endblock %}
+
+{% block title%}
+    Калькулятор
+{% endblock %}
+
+
+{% block body%}
 <div class="calculator">
-    <div>
-        <input type="text" id="display" readonly>
-        <div class="row">
-            <input type="button" value="7" onclick="addToDisplay('7')">
-            <input type="button" value="8" onclick="addToDisplay('8')">
-            <input type="button" value="9" onclick="addToDisplay('9')">
-            <input type="button" value="+" onclick="addToDisplay('+')">
+        <div>
+            <input type="text" id="display" readonly>
+            <div class="row">
+                <input type="button" value="7" onclick="addToDisplay('7')">
+                <input type="button" value="8" onclick="addToDisplay('8')">
+                <input type="button" value="9" onclick="addToDisplay('9')">
+                <input type="button" value="+" onclick="addToDisplay('+')">
+            </div>
+            <div class="row">
+                <input type="button" value="4" onclick="addToDisplay('4')">
+                <input type="button" value="5" onclick="addToDisplay('5')">
+                <input type="button" value="6" onclick="addToDisplay('6')">
+                <input type="button" value="-" onclick="addToDisplay('-')">
+            </div>
+            <div class="row">
+                <input type="button" value="1" onclick="addToDisplay('1')">
+                <input type="button" value="2" onclick="addToDisplay('2')">
+                <input type="button" value="3" onclick="addToDisplay('3')">
+                <input type="button" value="*" onclick="addToDisplay('*')">
+            </div>
+            <div class="row">
+                <input type="button" value="C" onclick="clearDisplay()">
+                <input type="button" value="0" onclick="addToDisplay('0')">
+                <input type="button" value="=" onclick="calculate()">
+                <input type="button" value="/" onclick="addToDisplay('/')">
+            </div>
         </div>
-        <div class="row">
-            <input type="button" value="4" onclick="addToDisplay('4')">
-            <input type="button" value="5" onclick="addToDisplay('5')">
-            <input type="button" value="6" onclick="addToDisplay('6')">
-            <input type="button" value="-" onclick="addToDisplay('-')">
-        </div>
-        <div class="row">
-            <input type="button" value="1" onclick="addToDisplay('1')">
-            <input type="button" value="2" onclick="addToDisplay('2')">
-            <input type="button" value="3" onclick="addToDisplay('3')">
-            <input type="button" value="*" onclick="addToDisplay('*')">
-        </div>
-        <div class="row">
-            <input type="button" value="C" onclick="clearDisplay()">
-            <input type="button" value="0" onclick="addToDisplay('0')">
-            <input type="button" value="=" onclick="calculate()">
-            <input type="button" value="/" onclick="addToDisplay('/')">
-        </div>
+        <div class="history" id="history"></div>
     </div>
-    <div class="history" id="history"></div>
-</div>
 
-<script>
-    function addToDisplay(value) {
-        document.getElementById('display').value += value;
-    }
-
-    function clearDisplay() {
-        document.getElementById('display').value = '';
-    }
-
-    function calculate() {
-        var input = document.getElementById('display').value
-        var result = eval(input);
-        document.getElementById('display').value = result;
-        addToHistory(input + " = " + result);
-    }
-
-    function addToHistory(result) {
-        var historyDiv = document.getElementById('history');
-        var historyItem = document.createElement('div');
-        historyItem.textContent = result;
-
-        if (historyDiv.childNodes.length >= 5) {
-            historyDiv.removeChild(historyDiv.childNodes[0]);
-        }
-
-        historyDiv.appendChild(historyItem);
-    }
-</script>
-</body>
-</html>
+    <script src="{% static 'calculation\js\calculation.js' %}"></script>
+{% endblock%}
