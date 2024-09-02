@@ -1,16 +1,13 @@
 {% extends 'calculation/main.html' %}
 {% load static %}
 
-{% block style%}
-    <link rel="stylesheet" href="{% static 'calculation/css/calculator.css'%}">
-{% endblock %}
-
 {% block title%}
     Калькулятор
 {% endblock %}
 
 
 {% block body%}
+<link rel="stylesheet" href="{% static 'calculation/css/calculator.css'%}">
 <div class="calculator">
         <div>
             <input type="text" id="display" readonly>
