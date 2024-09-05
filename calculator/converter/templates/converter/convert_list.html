@@ -8,9 +8,11 @@
 {% block body %}
     <link rel="stylesheet" href="{% static 'converter/css/converter_main.css'%}">
     <div class="grid-container">
-    {% for i in '123456789'%}
+    {% for i in '1'%}
+        <!--I'll add more later -->
+
         <div class="grid-item">
-            <a href="https://google.com">
+            <a href="{% url 'converter_page'%}?page_code={{i}}">
                 <img src="{% static 'converter/img/' %}{{ i }}.png">
             </a>
         </div>

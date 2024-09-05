@@ -1,0 +1,35 @@
+{% extends 'calculation/main.html' %}
+{% load static %}
+
+{% block title%}
+    {{page_name}}
+{% endblock%}
+
+
+{% block body%}
+
+<link rel="stylesheet" href="{% static 'converter/css/converter_page.css'%}">
+<script src="{% static 'converter/js/'%}{{js_code}}.js"></script>
+
+
+
+<div class="converter-container">
+    <input type="number" id="inputNumber" placeholder="Введите число">
+
+    <select id="fromUnit">
+        <option value="centi">Сантиметры</option>
+        <option value="unit">Метры</option>
+        <option value="kilo">Километры</option>
+    </select>
+
+    <select id="toUnit">
+        <option value="unit">Метры</option>
+        <option value="centi">Сантиметры</option>
+        <option value="kilo">Километры</option>
+    </select>
+
+    <button onclick="convertLength()">Конвертировать</button>
+
+    <input type="text" id="result" placeholder="Результат" readonly>
+</div>
+{% endblock %}
